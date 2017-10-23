@@ -25,12 +25,8 @@ import java.util.List;
 
 public class fHome extends AppCompatActivity {
 
-    EditText editKet = (EditText) findViewById(R.id.editKet);
-    EditText editDaerah = (EditText) findViewById(R.id.editDaerah);
-    EditText editBahan = (EditText) findViewById(R.id.editBahan);
-    EditText editCara = (EditText) findViewById(R.id.editCara);
-    EditText editRating = (EditText) findViewById(R.id.editRating);
-    Button btnSimpan = (Button) findViewById(R.id.btnSimpan);
+
+    Button btnSimpan;
 
     List<resepNusantara> resepNusantaras;
 
@@ -44,6 +40,8 @@ public class fHome extends AppCompatActivity {
         dbResepNusantara = FirebaseDatabase.getInstance().getReference("resepNusantara");
 
         resepNusantaras = new ArrayList<>();
+
+        btnSimpan = (Button) findViewById(R.id.btnSimpan);
 
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,11 +57,11 @@ public class fHome extends AppCompatActivity {
 
     private void addResep() {
 
-        String keteranganResep = editKet.getText().toString();
-        String asalDaerah = editDaerah.getText().toString();
-        String bahan = editBahan.getText().toString();
-        String cara = editBahan.getText().toString();
-        String rating = editRating.getText().toString();
+        String keteranganResep = "sdjdsjgf";
+        String asalDaerah = "aaaaaaaaaaaaaaa";
+        String bahan = "akjdbsdhhhhhhhhhhhhhhhhhhh";
+        String cara = "skjdnjskdfnjksdfn";
+        String rating = "3";
 
         if(!TextUtils.isEmpty(keteranganResep)) {
 
@@ -73,6 +71,9 @@ public class fHome extends AppCompatActivity {
             dbResepNusantara.child(id).setValue(rn);
 
             Toast.makeText(this, "resep added", Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
         }
     }
 }
