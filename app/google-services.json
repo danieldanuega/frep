@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "199887442989",
+    "firebase_url": "https://frep-ffacb.firebaseio.com",
+    "project_id": "frep-ffacb",
+    "storage_bucket": "frep-ffacb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199887442989:android:188e4894cfe4b490",
+        "android_client_info": {
+          "package_name": "com.example.android.frep"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199887442989-hndqmrt6akuju5a3kmmgg7pg4f480dtn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.frep",
+            "certificate_hash": "1148d82019af35ee7fce9cfa3ab3bd6dd47cf144"
+          }
+        },
+        {
+          "client_id": "199887442989-ippaen6h43utffo84l72araaen59pojg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5zaQpeI9rwAcwQCx-Y7W5G_nEiL_RPXM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "199887442989-ippaen6h43utffo84l72araaen59pojg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
