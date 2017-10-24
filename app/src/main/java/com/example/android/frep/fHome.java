@@ -26,6 +26,7 @@ import java.util.List;
 public class fHome extends AppCompatActivity {
 
     List<resepNusantara> listResepNusantara;
+    ListView listViewResep;
 
     DatabaseReference dbResepNusantara;
 
@@ -34,6 +35,7 @@ public class fHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_f_home);
 
+        listViewResep = (ListView) findViewById(R.id.resepList);
     }
 
     @Override
@@ -43,13 +45,28 @@ public class fHome extends AppCompatActivity {
         dbResepNusantara.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                
+
+                //clear the list
+                listResepNusantara.clear();
+
+                //iterating all nodes
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    //getting resep
+                    resepNusantara resepNusantara = postSnapshot.getValue(resepNusantara.class);
+                    //adding resep to the list
+                    listResepNusantara.add(resepNusantara);
+                }
+
+                //creating the adapter for the list
+                ResepList resepListAdapter = new ResepList(fHome.this, listResepNusantara);
+                //attaching adapter to the listView
+                listViewResep.setAdapter(resepListAdapter);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        })
+        });
     }
 }
