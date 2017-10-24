@@ -8,13 +8,13 @@
         android:id="@+id/judulResep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/judul_resep"
         tools:text="@string/judul_resep" />
 
     <TextView
         android:id="@+id/ketResep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/ket_resep"
         tools:text="@string/ket_resep" />
 </LinearLayout>

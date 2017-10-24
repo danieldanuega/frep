@@ -34,9 +34,10 @@ public class fHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_f_home);
-
         listViewResep = (ListView) findViewById(R.id.resepList);
+        dbResepNusantara = FirebaseDatabase.getInstance().getReference("resepNusantara");
     }
+
 
     @Override
     protected void onStart() {
@@ -47,14 +48,14 @@ public class fHome extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 //clear the list
-                listResepNusantara.clear();
+                //listResepNusantara.clear();
 
                 //iterating all nodes
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     //getting resep
-                    resepNusantara resepNusantara = postSnapshot.getValue(resepNusantara.class);
+                    resepNusantara resepN = postSnapshot.getValue(resepNusantara.class);
                     //adding resep to the list
-                    listResepNusantara.add(resepNusantara);
+                    listResepNusantara.add(resepN);
                 }
 
                 //creating the adapter for the list
@@ -69,4 +70,5 @@ public class fHome extends AppCompatActivity {
             }
         });
     }
+
 }
