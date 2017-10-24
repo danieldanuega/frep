@@ -6,32 +6,26 @@ package com.example.android.frep;
 
 public class resepNusantara {
 
-    private String id;
     private String keteranganResep;
     private String asalDaerah;
     private String bahan;
     private String cara;
-    private String rating;
-    private String favourite;
+    private Long rating;
+    private boolean favourite;
     private String nama;
 
     public resepNusantara() {
         //required
     }
 
-    public resepNusantara(String nama, String id, String keteranganResep, String asalDaerah, String bahan, String cara, String rating, String favourite) {
+    public resepNusantara(String asalDaerah, String bahan, String cara, boolean favourite, String keteranganResep, String nama, Long rating) {
         this.setNama(nama);
-        this.id = id;
         this.keteranganResep = keteranganResep;
         this.asalDaerah = asalDaerah;
         this.bahan = bahan;
         this.cara = cara;
         this.rating = rating;
         this.favourite = favourite;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public void setKeteranganResep(String keteranganResep) {
@@ -50,12 +44,8 @@ public class resepNusantara {
         this.cara = cara;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Long rating) {
         this.rating = rating;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getKeteranganResep() {
@@ -74,15 +64,15 @@ public class resepNusantara {
         return cara;
     }
 
-    public String getRating() {
+    public Long getRating() {
         return rating;
     }
 
-    public String getFavourite() {
+    public boolean getFavourite() {
         return favourite;
     }
 
-    public void setFavourite(String favourite) {
+    public void setFavourite(boolean favourite) {
         this.favourite = favourite;
     }
 

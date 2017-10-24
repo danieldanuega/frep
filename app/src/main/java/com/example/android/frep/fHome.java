@@ -50,13 +50,20 @@ public class fHome extends AppCompatActivity {
                 //clear the list
                 //listResepNusantara.clear();
 
+                
                 //iterating all nodes
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+
                     //getting resep
                     resepNusantara resepN = postSnapshot.getValue(resepNusantara.class);
+                    /* try to understand
+                    System.out.println(resepN.getAsalDaerah());
+                    */
+
                     //adding resep to the list
                     listResepNusantara.add(resepN);
                 }
+
 
                 //creating the adapter for the list
                 ResepList resepListAdapter = new ResepList(fHome.this, listResepNusantara);
