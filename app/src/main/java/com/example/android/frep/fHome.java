@@ -25,10 +25,7 @@ import java.util.List;
 
 public class fHome extends AppCompatActivity {
 
-
-    Button btnSimpan;
-
-    List<resepNusantara> resepNusantaras;
+    List<resepNusantara> listResepNusantara;
 
     DatabaseReference dbResepNusantara;
 
@@ -37,43 +34,7 @@ public class fHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_f_home);
 
-        dbResepNusantara = FirebaseDatabase.getInstance().getReference("resepNusantara");
-
-        resepNusantaras = new ArrayList<>();
-
-        btnSimpan = (Button) findViewById(R.id.btnSimpan);
-
-        btnSimpan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                addResep();
-            }
-        });
 
     }
 
-
-
-    private void addResep() {
-
-        String keteranganResep = "sdjdsjgf";
-        String asalDaerah = "aaaaaaaaaaaaaaa";
-        String bahan = "akjdbsdhhhhhhhhhhhhhhhhhhh";
-        String cara = "skjdnjskdfnjksdfn";
-        String rating = "3";
-
-        if(!TextUtils.isEmpty(keteranganResep)) {
-
-            String id = dbResepNusantara.push().getKey();
-
-            resepNusantara rn = new resepNusantara(id,keteranganResep,asalDaerah,bahan,cara,rating);
-            dbResepNusantara.child(id).setValue(rn);
-
-            Toast.makeText(this, "resep added", Toast.LENGTH_LONG).show();
-        }
-        else {
-            Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
-        }
-    }
 }
