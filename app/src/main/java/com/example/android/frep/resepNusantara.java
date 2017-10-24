@@ -13,12 +13,14 @@ public class resepNusantara {
     private String cara;
     private String rating;
     private String favourite;
+    private String nama;
 
     public resepNusantara() {
         //required
     }
 
-    public resepNusantara(String id, String keteranganResep, String asalDaerah, String bahan, String cara, String rating, String favourite) {
+    public resepNusantara(String nama, String id, String keteranganResep, String asalDaerah, String bahan, String cara, String rating, String favourite) {
+        this.setNama(nama);
         this.id = id;
         this.keteranganResep = keteranganResep;
         this.asalDaerah = asalDaerah;
@@ -82,5 +84,13 @@ public class resepNusantara {
 
     public void setFavourite(String favourite) {
         this.favourite = favourite;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 }

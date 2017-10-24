@@ -34,7 +34,22 @@ public class fHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_f_home);
 
-
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        dbResepNusantara.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        })
+    }
 }

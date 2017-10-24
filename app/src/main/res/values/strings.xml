@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Food Repository</string>
+    <string name="judul_resep">Resep</string>
+    <string name="ket_resep">keterangan</string>
 </resources>
