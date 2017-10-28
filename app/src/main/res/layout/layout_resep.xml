@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/judul_resep"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
         tools:text="@string/judul_resep" />
 
     <TextView
@@ -16,5 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ket_resep"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
         tools:text="@string/ket_resep" />
 </LinearLayout>

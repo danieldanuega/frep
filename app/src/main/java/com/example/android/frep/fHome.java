@@ -25,7 +25,7 @@ import java.util.List;
 
 public class fHome extends AppCompatActivity {
 
-    List<resepNusantara> listResepNusantara;
+    List<resepNusantara> listResepNusantara = new ArrayList<resepNusantara>();
     ListView listViewResep;
 
     DatabaseReference dbResepNusantara;
@@ -48,7 +48,7 @@ public class fHome extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 //clear the list
-                //listResepNusantara.clear();
+                listResepNusantara.clear();
 
                 
                 //iterating all nodes
@@ -56,9 +56,7 @@ public class fHome extends AppCompatActivity {
 
                     //getting resep
                     resepNusantara resepN = postSnapshot.getValue(resepNusantara.class);
-                    /* try to understand
-                    System.out.println(resepN.getAsalDaerah());
-                    */
+
 
                     //adding resep to the list
                     listResepNusantara.add(resepN);
