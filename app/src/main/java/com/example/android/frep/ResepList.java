@@ -1,9 +1,6 @@
 package com.example.android.frep;
 
 import android.app.Activity;
-import android.content.Context;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +21,7 @@ public class ResepList extends ArrayAdapter<resepNusantara> {
     List<resepNusantara> listResepNusantara;
 
     public ResepList(Activity context, List<resepNusantara> listResepNusantara) {
-        super(context,R.layout.layout_resep,listResepNusantara);
+        super(context,R.layout.layout_listResep,listResepNusantara);
         this.context = context;
         this.listResepNusantara = listResepNusantara;
     }
@@ -34,7 +30,7 @@ public class ResepList extends ArrayAdapter<resepNusantara> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        View listViewItem = inflater.inflate(R.layout.layout_resep, null, true);
+        View listViewItem = inflater.inflate(R.layout.layout_listResep, null, true);
 
         TextView judulResep = (TextView) listViewItem.findViewById(R.id.judulResep);
         TextView ketResep = (TextView) listViewItem.findViewById(R.id.ketResep);
