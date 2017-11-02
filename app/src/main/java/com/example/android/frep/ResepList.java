@@ -21,7 +21,7 @@ public class ResepList extends ArrayAdapter<resepNusantara> {
     List<resepNusantara> listResepNusantara;
 
     public ResepList(Activity context, List<resepNusantara> listResepNusantara) {
-        super(context,R.layout.layout_listResep,listResepNusantara);
+        super(context,R.layout.layout_list_resep,listResepNusantara);
         this.context = context;
         this.listResepNusantara = listResepNusantara;
     }
@@ -30,7 +30,7 @@ public class ResepList extends ArrayAdapter<resepNusantara> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        View listViewItem = inflater.inflate(R.layout.layout_listResep, null, true);
+        View listViewItem = inflater.inflate(R.layout.layout_list_resep, null, true);
 
         TextView judulResep = (TextView) listViewItem.findViewById(R.id.judulResep);
         TextView ketResep = (TextView) listViewItem.findViewById(R.id.ketResep);
