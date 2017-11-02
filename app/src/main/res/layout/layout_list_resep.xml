@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="395dp"
-        android:layout_height="587dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+    <TextView
+        android:id="@+id/judulResep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="18sp"
+        android:text="TextView"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        tools:text="@string/judul_resep" />
 
-        <TextView
-            android:id="@+id/judulResep"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAppearance="@android:style/TextAppearance.Material.Large"
-            tools:text="@string/judul_resep" />
+    <TextView
+        android:id="@+id/ketResep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="8sp"
+        android:text="TextView"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        tools:text="@string/ket_resep" />
 
-        <TextView
-            android:id="@+id/ketResep"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAppearance="@android:style/TextAppearance.Holo.Medium"
-            tools:text="@string/ket_resep" />
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
