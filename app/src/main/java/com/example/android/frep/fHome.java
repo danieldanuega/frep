@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,12 +32,24 @@ public class fHome extends AppCompatActivity {
 
     DatabaseReference dbResepNusantara;
 
+    private Button signOutBtn;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_f_home);
         listViewResep = (ListView) findViewById(R.id.resepList);
         dbResepNusantara = FirebaseDatabase.getInstance().getReference("resepNusantara");
+
+        signOutBtn = (Button) findViewById(R.id.signOutBtn);
+        signOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                signOut();
+            }
+        });
     }
 
 
@@ -74,6 +88,11 @@ public class fHome extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void signOut() {
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(fHome.this,fRegister.class));
     }
 
 }

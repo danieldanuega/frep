@@ -54,7 +54,7 @@ public class fRegister extends AppCompatActivity {
 
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(pass)) {
 
-            Toast.makeText(fRegister.this, "Email atau Password tidak terisi", Toast.LENGTH_LONG);
+            Toast.makeText(fRegister.this, "Email atau Password tidak terisi", Toast.LENGTH_LONG).show();
 
         } else {
 
@@ -63,8 +63,10 @@ public class fRegister extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if (!task.isSuccessful()) {
-                        Toast.makeText(fRegister.this, "Email atau Password anda salah", Toast.LENGTH_LONG);
+                        Toast.makeText(fRegister.this, "Email atau Password anda salah", Toast.LENGTH_LONG).show();
                     } else {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        Toast.makeText(fRegister.this, "Selamat Datang " + user.getEmail(), Toast.LENGTH_LONG).show();
                         startActivity(new Intent(fRegister.this, fHome.class));
                     }
 
@@ -80,5 +82,7 @@ public class fRegister extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        Intent intent = new Intent(fRegister.this, fHome.class);
+        startActivity(intent);
     }
 }

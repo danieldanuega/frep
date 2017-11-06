@@ -3,4 +3,5 @@
     <string name="judul_resep">Resep</string>
     <string name="ket_resep">keterangan</string>
     <string name="login_button">Masuk</string>
+    <string name="logout_button">Keluar</string>
 </resources>
