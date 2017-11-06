@@ -92,7 +92,7 @@ public class fHome extends AppCompatActivity {
 
     private void signOut() {
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(fHome.this,fRegister.class));
+        finish();
     }
 
 }
