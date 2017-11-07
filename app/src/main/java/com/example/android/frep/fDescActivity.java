@@ -16,10 +16,18 @@ public class fDescActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_f_desc);
+
+        //get the object
+        resep = (resepNusantara) getIntent().getSerializableExtra("RESEP");
+
+
+        //modifying app bar or bar in the top
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle(resep.getNama());
 
 
+        //Modifying the favourite button
         FloatingActionButton fav = (FloatingActionButton) findViewById(R.id.favBtn);
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,10 +37,9 @@ public class fDescActivity extends AppCompatActivity {
             }
         });
 
-        //get the object
-        resep = (resepNusantara) getIntent().getSerializableExtra("RESEP");
-
+        
+        //Modifying the Description
         TextView desc = (TextView) findViewById(R.id.desc);
-        desc.setText(resep.getNama());
+        desc.setText(resep.getKeteranganResep());
     }
 }
