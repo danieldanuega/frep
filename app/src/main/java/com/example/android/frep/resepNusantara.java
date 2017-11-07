@@ -1,10 +1,12 @@
 package com.example.android.frep;
 
+import java.io.Serializable;
+
 /**
  * Created by Daniel Go on 23 Oct 2017.
  */
 
-public class resepNusantara {
+public class resepNusantara implements Serializable {
 
     private String keteranganResep;
     private String asalDaerah;

@@ -42,6 +42,22 @@ public class fHome extends AppCompatActivity {
         listViewResep = (ListView) findViewById(R.id.resepList);
         dbResepNusantara = FirebaseDatabase.getInstance().getReference("resepNusantara");
 
+        //To give action in Selected data in ListView
+        listViewResep.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Intent intent = new Intent(fHome.this, fDescActivity.class);
+                resepNusantara resep = listResepNusantara.get(i);
+                intent.putExtra("RESEP", resep);
+
+                startActivity(intent);
+
+            }
+        });
+
+
+        //To Sign Out User
         signOutBtn = (Button) findViewById(R.id.signOutBtn);
         signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
