@@ -37,7 +37,7 @@ public class fDescActivity extends AppCompatActivity {
             }
         });
 
-        
+
         //Modifying the Description
         TextView desc = (TextView) findViewById(R.id.desc);
         desc.setText(resep.getKeteranganResep());

@@ -81,10 +81,12 @@ public class fRegister extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        /*
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        Intent intent = new Intent(fRegister.this, fHome.class);
-        startActivity(intent);
-        */
+        if(currentUser != null) {
+            Intent intent = new Intent(fRegister.this, fHome.class);
+            startActivity(intent);
+        }
+
     }
 }
