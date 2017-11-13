@@ -13,6 +13,7 @@ public class resepNusantara implements Serializable {
     private String bahan;
     private String cara;
     private Long rating;
+    private Long id;
     private boolean favourite;
     private String nama;
 
@@ -20,7 +21,7 @@ public class resepNusantara implements Serializable {
         //required
     }
 
-    public resepNusantara(String asalDaerah, String bahan, String cara, boolean favourite, String keteranganResep, String nama, Long rating) {
+    public resepNusantara(String asalDaerah, String bahan, String cara, boolean favourite, Long id, String keteranganResep, String nama, Long rating) {
         this.setNama(nama);
         this.keteranganResep = keteranganResep;
         this.asalDaerah = asalDaerah;
@@ -28,6 +29,8 @@ public class resepNusantara implements Serializable {
         this.cara = cara;
         this.rating = rating;
         this.favourite = favourite;
+        this.setId(id);
+
     }
 
     public void setKeteranganResep(String keteranganResep) {
@@ -84,5 +87,13 @@ public class resepNusantara implements Serializable {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
