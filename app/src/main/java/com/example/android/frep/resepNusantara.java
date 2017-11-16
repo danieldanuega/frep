@@ -14,21 +14,19 @@ public class resepNusantara implements Serializable {
     private String cara;
     private Long rating;
     private Long id;
-    private boolean favourite;
     private String nama;
 
     public resepNusantara() {
-        //required
+        //required for Firebase
     }
 
-    public resepNusantara(String asalDaerah, String bahan, String cara, boolean favourite, Long id, String keteranganResep, String nama, Long rating) {
+    public resepNusantara(String asalDaerah, String bahan, String cara, Long id, String keteranganResep, String nama, Long rating) {
         this.setNama(nama);
         this.keteranganResep = keteranganResep;
         this.asalDaerah = asalDaerah;
         this.bahan = bahan;
         this.cara = cara;
         this.rating = rating;
-        this.favourite = favourite;
         this.setId(id);
 
     }
@@ -71,14 +69,6 @@ public class resepNusantara implements Serializable {
 
     public Long getRating() {
         return rating;
-    }
-
-    public boolean getFavourite() {
-        return favourite;
-    }
-
-    public void setFavourite(boolean favourite) {
-        this.favourite = favourite;
     }
 
     public String getNama() {

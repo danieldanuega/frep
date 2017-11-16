@@ -39,6 +39,7 @@ public class fHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_f_home);
+
         listViewResep = (ListView) findViewById(R.id.resepList);
         dbResepNusantara = FirebaseDatabase.getInstance().getReference("resepNusantara");
 
@@ -56,7 +57,6 @@ public class fHome extends AppCompatActivity {
             }
         });
 
-
         //To Sign Out User
         signOutBtn = (Button) findViewById(R.id.signOutBtn);
         signOutBtn.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +67,7 @@ public class fHome extends AppCompatActivity {
             }
         });
     }
+
 
 
     @Override
@@ -80,7 +81,7 @@ public class fHome extends AppCompatActivity {
                 //clear the list
                 listResepNusantara.clear();
 
-                
+
                 //iterating all nodes
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
@@ -104,6 +105,7 @@ public class fHome extends AppCompatActivity {
 
             }
         });
+
     }
 
     private void signOut() {
