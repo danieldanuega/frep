@@ -5,14 +5,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".fRegister"
+        <activity
+            android:name=".fLogin"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,27 +20,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".fHome"
+            android:parentActivityName=".fLogin"
+            android:screenOrientation="portrait">
 
-        <activity android:name=".fHome"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".fRegister" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".fRegister" />
+                android:value=".fLogin" />
         </activity>
-
         <activity
             android:name=".fDescActivity"
-            android:label="@string/title_activity_f_desc"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".fRegister" >
+            android:parentActivityName=".fLogin"
+            android:theme="@style/AppTheme.NoActionBar">
+
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".fRegister" />
+                android:value=".fLogin" />
         </activity>
+        <activity
+            android:name=".fRegister"
+            android:parentActivityName=".fLogin"
+            android:screenOrientation="portrait">
 
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".fLogin" />
+        </activity>
     </application>
 
 </manifest>

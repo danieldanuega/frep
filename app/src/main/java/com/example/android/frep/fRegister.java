@@ -19,10 +19,9 @@ import com.google.firebase.auth.FirebaseUser;
 public class fRegister extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-
-    private EditText emailTxt;
-    private EditText passTxt;
-    private Button loginBtn;
+    private Button btnBuat;
+    private EditText email;
+    private EditText pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,62 +30,55 @@ public class fRegister extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        emailTxt = (EditText) findViewById(R.id.emailTxt);
-        passTxt = (EditText) findViewById(R.id.passTxt);
-        loginBtn = (Button) findViewById(R.id.loginBtn);
+        btnBuat = (Button) findViewById(R.id.btnBuat);
+        email = (EditText) findViewById(R.id.editText);
+        pass = (EditText) findViewById(R.id.editText2);
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+        btnBuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                signIn();
-
+                register();
             }
         });
+
     }
 
+    private void register() {
 
+        String emailTxt = email.getText().toString();
+        String passTxt = pass.getText().toString();
 
-    private void signIn() {
-
-        String email = emailTxt.getText().toString();
-        String pass = passTxt.getText().toString();
-
-        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(pass)) {
+        if(TextUtils.isEmpty(emailTxt) || TextUtils.isEmpty(passTxt)) {
 
             Toast.makeText(fRegister.this, "Email atau Password tidak terisi", Toast.LENGTH_LONG).show();
 
         } else {
 
-            mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
+            if(passTxt.length() < 8) {
 
-                    if (!task.isSuccessful()) {
-                        Toast.makeText(fRegister.this, "Email atau Password anda salah", Toast.LENGTH_LONG).show();
-                    } else {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        Toast.makeText(fRegister.this, "Selamat Datang " + user.getEmail(), Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(fRegister.this, fHome.class));
+                Toast.makeText(fRegister.this, "Password terlalu pendek, minimal 8 karakter", Toast.LENGTH_LONG).show();
+
+            } else {
+
+                mAuth.createUserWithEmailAndPassword(emailTxt, passTxt).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(fRegister.this, "Maaf terjadi kendala internal", Toast.LENGTH_LONG).show();
+                        } else {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(fRegister.this, "Selamat Datang " + user.getEmail(), Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(fRegister.this, fHome.class));
+                        }
                     }
 
-                }
-            });
+                });
+            }
 
         }
-
-
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null) {
-            Intent intent = new Intent(fRegister.this, fHome.class);
-            startActivity(intent);
-        }
-
-    }
 }
