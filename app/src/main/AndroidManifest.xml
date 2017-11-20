@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".fLogin"
-            android:screenOrientation="portrait">
+            android:name=".fSplashScreen"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,33 +23,43 @@
         </activity>
         <activity
             android:name=".fHome"
-            android:parentActivityName=".fLogin"
+            android:parentActivityName=".fSplashScreen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".fLogin" />
+                android:value=".fSplashScreen" />
         </activity>
         <activity
             android:name=".fDescActivity"
-            android:parentActivityName=".fLogin"
+            android:parentActivityName=".fSplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".fLogin" />
+                android:value=".fSplashScreen" />
         </activity>
         <activity
             android:name=".fRegister"
-            android:parentActivityName=".fLogin"
+            android:parentActivityName=".fSplashScreen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".fLogin" />
+                android:value=".fSplashScreen" />
+        </activity>
+        <activity
+            android:name=".fLogin"
+            android:parentActivityName=".fSplashScreen"
+            android:screenOrientation="portrait">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".fSplashScreen" />
         </activity>
     </application>
 

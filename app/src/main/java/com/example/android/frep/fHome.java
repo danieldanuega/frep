@@ -1,5 +1,6 @@
 package com.example.android.frep;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
@@ -33,7 +34,7 @@ public class fHome extends AppCompatActivity {
     DatabaseReference dbResepNusantara;
 
     private Button signOutBtn;
-
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,7 @@ public class fHome extends AppCompatActivity {
 
                     //adding resep to the list
                     listResepNusantara.add(resepN);
+
                 }
 
 
@@ -116,7 +118,7 @@ public class fHome extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        
+
         Intent startMain = new Intent(Intent.ACTION_MAIN);
         startMain.addCategory(Intent.CATEGORY_HOME);
         startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
