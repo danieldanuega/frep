@@ -81,7 +81,8 @@ public class fDescActivity extends AppCompatActivity {
 
         //Modifying the Description
         TextView desc = (TextView) findViewById(R.id.desc);
-        desc.setText(resep.getKeteranganResep());
+        desc.setText("Asal Daerah : "+ resep.getAsalDaerah() +"\n\nBahan : \n"+ resep.getBahan()+ "\n\nCara : \n"+resep.getCara() );
+        desc.setTextSize(18);desc.setTextColor(getColor(android.R.color.black));
     }
 
 
