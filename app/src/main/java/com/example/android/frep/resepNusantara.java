@@ -13,14 +13,14 @@ public class resepNusantara implements Serializable {
     private String bahan;
     private String cara;
     private Long rating;
-    private Long id;
+    private String id;
     private String nama;
 
     public resepNusantara() {
         //required for Firebase
     }
 
-    public resepNusantara(String asalDaerah, String bahan, String cara, Long id, String keteranganResep, String nama, Long rating) {
+    public resepNusantara(String asalDaerah, String bahan, String cara, String id, String keteranganResep, String nama, Long rating) {
         this.setNama(nama);
         this.keteranganResep = keteranganResep;
         this.asalDaerah = asalDaerah;
@@ -79,11 +79,11 @@ public class resepNusantara implements Serializable {
         this.nama = nama;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

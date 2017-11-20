@@ -48,11 +48,13 @@ public class fDescActivity extends AppCompatActivity {
         setTitle(resep.getNama());
 
 
+        /*
         //Modifying the favourite button //ERROR
         FloatingActionButton fav = (FloatingActionButton) findViewById(R.id.favBtn);
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 for(int i=0; i<key.size(); i++) {
 
@@ -75,8 +77,10 @@ public class fDescActivity extends AppCompatActivity {
 
                 }
 
+
             }
         });
+        */
 
 
         //Modifying the Description
@@ -86,6 +90,7 @@ public class fDescActivity extends AppCompatActivity {
     }
 
 
+    /*
     @Override
     protected void onStart() {
         super.onStart();
@@ -130,4 +135,5 @@ public class fDescActivity extends AppCompatActivity {
             }
         });
     }
+    */
 }

@@ -96,4 +96,11 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="daftar_button">Daftar</string>
+    <string name="sugesti_button">Kirim Resepmu !</string>
+
+    <string name="nama_resep">Nama Resep</string>
+    <string name="keterangan">Keterangan Singkat</string>
+    <string name="bahan">Bahan</string>
+    <string name="cara">Cara</string>
+    <string name="asal">Asal Daerah</string>
 </resources>

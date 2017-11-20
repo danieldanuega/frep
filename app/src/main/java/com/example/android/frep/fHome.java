@@ -34,7 +34,8 @@ public class fHome extends AppCompatActivity {
     DatabaseReference dbResepNusantara;
 
     private Button signOutBtn;
-    
+    private Button suggestBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,16 @@ public class fHome extends AppCompatActivity {
             public void onClick(View view) {
 
                 signOut();
+            }
+        });
+
+        //To Send a Resep
+        suggestBtn = (Button) findViewById(R.id.suggestBtn);
+        suggestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(fHome.this, fSendResep.class));
             }
         });
     }

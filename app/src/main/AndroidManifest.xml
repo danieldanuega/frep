@@ -61,6 +61,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".fSplashScreen" />
         </activity>
+        <activity
+            android:name=".fSendResep"
+            android:parentActivityName=".fSplashScreen"
+            android:screenOrientation="portrait">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".fSplashScreen" />
+        </activity>
     </application>
 
 </manifest>
