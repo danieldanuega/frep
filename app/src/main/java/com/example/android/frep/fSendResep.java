@@ -50,7 +50,7 @@ public class fSendResep extends AppCompatActivity {
     private void tambahResep() {
 
         String nama,ket,cara,bahan,asal;
-        Long rating;
+        Long rating,rating2,rating3;
         String id;
 
         nama = namaReseptxt.getText().toString();
@@ -60,6 +60,8 @@ public class fSendResep extends AppCompatActivity {
         asal = asalTxt.getText().toString();
         id = dbresep.push().getKey();
         rating = 0L;
+        rating2 = 0L;
+        rating3 = 0L;
 
         if(TextUtils.isEmpty(nama) || TextUtils.isEmpty(ket) || TextUtils.isEmpty(cara) || TextUtils.isEmpty(bahan) || TextUtils.isEmpty(asal)) {
 
@@ -68,7 +70,7 @@ public class fSendResep extends AppCompatActivity {
         } else {
 
             //Creating the object
-            resepNusantara resep = new resepNusantara(asal,bahan,cara,id,ket,nama,rating);
+            resepNusantara resep = new resepNusantara(asal,bahan,cara,id,ket,nama,rating,rating2,rating3);
 
             //Insert the data into FirebaseDatabase
             dbresep.child(id).setValue(resep);

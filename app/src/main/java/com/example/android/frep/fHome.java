@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -111,6 +114,7 @@ public class fHome extends AppCompatActivity {
                 ResepList resepListAdapter = new ResepList(fHome.this, listResepNusantara);
                 //attaching adapter to the listView
                 listViewResep.setAdapter(resepListAdapter);
+                registerForContextMenu(listViewResep);
             }
 
             @Override
@@ -120,6 +124,7 @@ public class fHome extends AppCompatActivity {
         });
 
     }
+
 
     private void signOut() {
         FirebaseAuth.getInstance().signOut();

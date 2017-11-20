@@ -13,6 +13,25 @@ public class resepNusantara implements Serializable {
     private String bahan;
     private String cara;
     private Long rating;
+
+    public Long getRating2() {
+        return rating2;
+    }
+
+    public void setRating2(Long rating2) {
+        this.rating2 = rating2;
+    }
+
+    public Long getRating3() {
+        return rating3;
+    }
+
+    public void setRating3(Long rating3) {
+        this.rating3 = rating3;
+    }
+
+    private Long rating2;
+    private Long rating3;
     private String id;
     private String nama;
 
@@ -20,7 +39,7 @@ public class resepNusantara implements Serializable {
         //required for Firebase
     }
 
-    public resepNusantara(String asalDaerah, String bahan, String cara, String id, String keteranganResep, String nama, Long rating) {
+    public resepNusantara(String asalDaerah, String bahan, String cara, String id, String keteranganResep, String nama, Long rating, Long rating2, Long rating3) {
         this.setNama(nama);
         this.keteranganResep = keteranganResep;
         this.asalDaerah = asalDaerah;
@@ -28,6 +47,8 @@ public class resepNusantara implements Serializable {
         this.cara = cara;
         this.rating = rating;
         this.setId(id);
+        this.rating2 = rating2;
+        this.rating3 = rating3;
 
     }
 
