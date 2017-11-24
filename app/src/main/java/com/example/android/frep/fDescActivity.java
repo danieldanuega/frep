@@ -42,6 +42,31 @@ public class fDescActivity extends AppCompatActivity {
         resep = (resepNusantara) getIntent().getSerializableExtra("RESEP");
 
 
+        //get if the favourite
+        dbFav.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                key.clear();
+
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+
+                    favouritedResep favR = postSnapshot.getValue(favouritedResep.class);
+
+                    key.add(favR);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         //modifying app bar or bar in the top
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,28 +80,29 @@ public class fDescActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                view.setBackgroundColor(Color.parseColor("#000000"));
+
+                Snackbar.make(view, "Unfavorited !", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+                view.setBackgroundColor(Color.parseColor("#FFC0CB"));
+
+                Snackbar.make(view, "Favorited !", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
 
                 for(int i=0; i<key.size(); i++) {
 
-                    if (key.get(i).getEmail().equals(user.getEmail().substring(0,user.getEmail().indexOf('@'))) && key.get(i).getKey().equals(resep.getId())) {
+                    if (key.get(i).equals(user.getEmail().substring(0,user.getEmail().indexOf('@'))) && key.get(i).getKey().equals(resep.getId())) {
 
                         dbFav.child(key.get(i).getEmail()).removeValue();
-                        view.setBackgroundColor(Color.parseColor("#000000"));
 
-                        Snackbar.make(view, "Unfavorited !", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
                     } else {
 
                         favResep = new favouritedResep(user.getEmail(),resep.getId());
                         dbFav.child(user.getEmail()).setValue(favResep);
-                        view.setBackgroundColor(Color.parseColor("#FFC0CB"));
 
-                        Snackbar.make(view, "Favorited !", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
                     }
-
                 }
-
 
             }
         });
