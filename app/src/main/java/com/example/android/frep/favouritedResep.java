@@ -7,21 +7,21 @@ package com.example.android.frep;
 public class favouritedResep {
 
     private String email;
-    private Long resepId;
+    private String resepId;
 
     public favouritedResep() {
     }
 
-    public favouritedResep(String email, Long key) {
+    public favouritedResep(String email, String key) {
         this.email = email;
         this.resepId = key;
     }
 
-    public Long getKey() {
+    public String getKey() {
         return resepId;
     }
 
-    public void setKey(Long key) {
+    public void setKey(String key) {
         this.resepId = key;
     }
 
