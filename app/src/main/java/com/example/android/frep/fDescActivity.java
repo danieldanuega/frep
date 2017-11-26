@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -48,6 +50,29 @@ public class fDescActivity extends AppCompatActivity {
         setTitle(resep.getNama());
 
 
+        dbFav.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                favouriteList.clear();
+
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+
+                    favouritedResep favR = postSnapshot.getValue(favouritedResep.class);
+
+                    favouriteList.add(favR);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         //Modifying the favourite button //ERROR
         FloatingActionButton fav = (FloatingActionButton) findViewById(R.id.favBtn);
@@ -55,28 +80,47 @@ public class fDescActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                /*
-                view.setBackgroundColor(Color.parseColor("#000000"));
+                int index = user.getEmail().indexOf('@');
+                String email = user.getEmail().substring(0,index);
 
-                Snackbar.make(view, "Unfavorited !", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-                view.setBackgroundColor(Color.parseColor("#FFC0CB"));
-
-                Snackbar.make(view, "Favorited !", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                        */
 
                 for(int i=0; i<favouriteList.size(); i++) {
 
-                    if(favouriteList.get(i).getEmail().equals(user.getEmail()) && favouriteList.get(i).getKey().equals(resep.getId())) {
+                    if(favouriteList.get(i).getEmail().equals(email) && favouriteList.get(i).getResepId().equals(resep.getId())) {
 
-                        favouriteList.remove(i);
+                        final Query deleteResep = dbFav.orderByChild("resepId").equalTo(resep.getId());
+
+                        deleteResep.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                for(DataSnapshot deletesnapshot : dataSnapshot.getChildren()) {
+                                    deletesnapshot.getRef().removeValue();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        view.setBackgroundColor(Color.parseColor("#000000"));
+
+                        Snackbar.make(view, "Unfavorited !", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
 
                     } else {
 
-                        favouritedResep thisResep = new favouritedResep(user.getEmail(),resep.getId());
-                        dbFav.child("FavouritedResep").setValue(thisResep); //Check the child name
+                        String favId = dbFav.push().getKey();
+                        favouritedResep thisResep = new favouritedResep(email,favId,resep.getId());
+                        dbFav.child(favId).setValue(thisResep);
+
+                        view.setBackgroundColor(Color.parseColor("#FFC0CB"));
+
+                        Snackbar.make(view, "Favorited !", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+
 
                     }
 
@@ -98,28 +142,8 @@ public class fDescActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-            //get if the favourite
-            dbFav.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+            //get the favourite
 
-                    favouriteList.clear();
-
-                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-
-                        favouritedResep favR = postSnapshot.getValue(favouritedResep.class);
-
-                        favouriteList.add(favR);
-
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
 
     }
 
