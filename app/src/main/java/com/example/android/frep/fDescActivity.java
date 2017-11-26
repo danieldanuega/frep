@@ -40,6 +40,7 @@ public class fDescActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_f_desc);
+        //Initiate
         dbFav = FirebaseDatabase.getInstance().getReference("favouritedResep");
 
         //get the object
