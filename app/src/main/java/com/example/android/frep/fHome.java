@@ -38,6 +38,7 @@ public class fHome extends AppCompatActivity {
 
     private Button signOutBtn;
     private Button suggestBtn;
+    private Button userBtn;
 
 
     @Override
@@ -79,6 +80,17 @@ public class fHome extends AppCompatActivity {
             public void onClick(View view) {
 
                 startActivity(new Intent(fHome.this, fSendResep.class));
+            }
+        });
+
+        //To go to Acc page
+        userBtn = (Button) findViewById(R.id.btnUser);
+        userBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(fHome.this, fAccPage.class));
+
             }
         });
     }
