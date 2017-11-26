@@ -24,6 +24,8 @@ import java.util.List;
 
 public class fDescActivity extends AppCompatActivity {
 
+    private int toggle = 0;
+
     resepNusantara resep;
     favouritedResep favResep;
     //A vessel for favouritedResep database
@@ -50,6 +52,77 @@ public class fDescActivity extends AppCompatActivity {
         setTitle(resep.getNama());
 
 
+        //Modifying the favourite button //ERROR
+        FloatingActionButton fav = (FloatingActionButton) findViewById(R.id.favBtn);
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            int index = user.getEmail().indexOf('@');
+            String email = user.getEmail().substring(0,index);
+
+
+            for(int i=0; i<favouriteList.size(); i++) {
+
+                if(favouriteList.get(i).getEmail().equals(email) && favouriteList.get(i).getResepId().equals(resep.getId())) {
+
+                    final Query deleteResep = dbFav.orderByChild("resepId").equalTo(resep.getId());
+
+                    deleteResep.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            for(DataSnapshot deletesnapshot : dataSnapshot.getChildren()) {
+                                deletesnapshot.getRef().removeValue();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    view.setBackgroundColor(Color.parseColor("#000000"));
+
+                    Snackbar.make(view, "Unfavorited !", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+
+                    toggle = 1;
+                    return;
+                }
+            }
+
+            if(toggle == 0) {
+                String favId = dbFav.push().getKey();
+                favouritedResep thisResep = new favouritedResep(email, favId, resep.getId());
+                dbFav.child(favId).setValue(thisResep);
+
+                view.setBackgroundColor(Color.parseColor("#FFC0CB"));
+
+                Snackbar.make(view, "Favorited !", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                toggle = 0;
+            }
+
+
+            }
+        });
+
+
+
+        //Modifying the Description
+        TextView desc = (TextView) findViewById(R.id.desc);
+        desc.setText("Asal Daerah : "+ resep.getAsalDaerah() +"\n\nBahan : \n"+ resep.getBahan()+ "\n\nCara : \n"+resep.getCara() );
+        desc.setTextSize(18);desc.setTextColor(getColor(android.R.color.black));
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //get the favourite
         dbFav.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -71,79 +144,6 @@ public class fDescActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-        //Modifying the favourite button //ERROR
-        FloatingActionButton fav = (FloatingActionButton) findViewById(R.id.favBtn);
-        fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                int index = user.getEmail().indexOf('@');
-                String email = user.getEmail().substring(0,index);
-
-
-                for(int i=0; i<favouriteList.size(); i++) {
-
-                    if(favouriteList.get(i).getEmail().equals(email) && favouriteList.get(i).getResepId().equals(resep.getId())) {
-
-                        final Query deleteResep = dbFav.orderByChild("resepId").equalTo(resep.getId());
-
-                        deleteResep.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                for(DataSnapshot deletesnapshot : dataSnapshot.getChildren()) {
-                                    deletesnapshot.getRef().removeValue();
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-
-                        view.setBackgroundColor(Color.parseColor("#000000"));
-
-                        Snackbar.make(view, "Unfavorited !", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-
-                    } else {
-
-                        String favId = dbFav.push().getKey();
-                        favouritedResep thisResep = new favouritedResep(email,favId,resep.getId());
-                        dbFav.child(favId).setValue(thisResep);
-
-                        view.setBackgroundColor(Color.parseColor("#FFC0CB"));
-
-                        Snackbar.make(view, "Favorited !", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-
-
-                    }
-
-                }
-
-            }
-        });
-
-
-
-        //Modifying the Description
-        TextView desc = (TextView) findViewById(R.id.desc);
-        desc.setText("Asal Daerah : "+ resep.getAsalDaerah() +"\n\nBahan : \n"+ resep.getBahan()+ "\n\nCara : \n"+resep.getCara() );
-        desc.setTextSize(18);desc.setTextColor(getColor(android.R.color.black));
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-            //get the favourite
-
 
     }
 
