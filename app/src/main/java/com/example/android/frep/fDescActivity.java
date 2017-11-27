@@ -53,7 +53,7 @@ public class fDescActivity extends AppCompatActivity {
         setTitle(resep.getNama());
 
 
-        //Modifying the favourite button //ERROR
+        //Modifying the favourite button
         FloatingActionButton fav = (FloatingActionButton) findViewById(R.id.favBtn);
         fav.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +26,7 @@ public class fLogin extends AppCompatActivity {
     private EditText passTxt;
     private Button loginBtn;
     private Button daftarBtn;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +39,13 @@ public class fLogin extends AppCompatActivity {
         passTxt = (EditText) findViewById(R.id.passTxt);
         loginBtn = (Button) findViewById(R.id.loginBtn);
         daftarBtn = (Button) findViewById(R.id.btnReg);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                hideSoftKeyboard();
                 signIn();
 
             }
@@ -49,6 +54,8 @@ public class fLogin extends AppCompatActivity {
         daftarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                hideSoftKeyboard();
 
                 startActivity(new Intent(fLogin.this, fRegister.class));
 
@@ -69,6 +76,7 @@ public class fLogin extends AppCompatActivity {
 
         } else {
 
+            progressBar.setVisibility(ProgressBar.VISIBLE);
             mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -86,18 +94,25 @@ public class fLogin extends AppCompatActivity {
 
         }
 
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
+        progressBar.setVisibility(ProgressBar.INVISIBLE);
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
             Intent intent = new Intent(fLogin.this, fHome.class);
             startActivity(intent);
         }
 
+    }
+
+    public void hideSoftKeyboard() {
+        if(getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
     }
 }
