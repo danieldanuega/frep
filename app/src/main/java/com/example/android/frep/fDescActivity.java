@@ -1,9 +1,11 @@
 package com.example.android.frep;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -24,7 +26,14 @@ import java.util.List;
 
 public class fDescActivity extends AppCompatActivity {
 
+    //get the user
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    FloatingActionButton fav;
+
+    //toggle for filtering the button execution & email is for authenticate the user
     private int toggle = 0;
+    private int index = user.getEmail().indexOf('@');
+    private String email = user.getEmail().substring(0,index);
 
     resepNusantara resep;
     favouritedResep favResep;
@@ -32,9 +41,6 @@ public class fDescActivity extends AppCompatActivity {
     List<favouritedResep> favouriteList = new ArrayList<>();
 
     DatabaseReference dbFav;
-    //get the user
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,74 +48,72 @@ public class fDescActivity extends AppCompatActivity {
         setContentView(R.layout.activity_f_desc);
         //Initiate
         dbFav = FirebaseDatabase.getInstance().getReference("favouritedResep");
+        fav = (FloatingActionButton) findViewById(R.id.favBtn);
 
         //get the object
         resep = (resepNusantara) getIntent().getSerializableExtra("RESEP");
-
 
         //modifying app bar or bar in the top
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle(resep.getNama());
 
-
         //Modifying the favourite button
-        FloatingActionButton fav = (FloatingActionButton) findViewById(R.id.favBtn);
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-            int index = user.getEmail().indexOf('@');
-            String email = user.getEmail().substring(0,index);
+                for(int i=0; i<favouriteList.size(); i++) {
 
+                    //Check if the user has favourited or not
+                    if(favouriteList.get(i).getEmail().equals(email) && favouriteList.get(i).getResepId().equals(resep.getId())) {
 
-            for(int i=0; i<favouriteList.size(); i++) {
+                        //removing the data from Database
+                        final Query deleteResep = dbFav.orderByChild("resepId").equalTo(resep.getId());
+                        deleteResep.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                if(favouriteList.get(i).getEmail().equals(email) && favouriteList.get(i).getResepId().equals(resep.getId())) {
-
-                    final Query deleteResep = dbFav.orderByChild("resepId").equalTo(resep.getId());
-
-                    deleteResep.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-
-                            for(DataSnapshot deletesnapshot : dataSnapshot.getChildren()) {
-                                deletesnapshot.getRef().removeValue();
+                                for(DataSnapshot deletesnapshot : dataSnapshot.getChildren()) {
+                                    deletesnapshot.getRef().removeValue();
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
 
-                        }
-                    });
+                            }
+                        });
 
-                    view.setBackgroundColor(Color.parseColor("#000000"));
+                        ///coloring the button
+                        fav.setRippleColor(ContextCompat.getColor(getApplicationContext(), R.color.button_default));
+                        fav.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(),R.color.button_default)));
 
-                    Snackbar.make(view, "Unfavorited !", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                        Snackbar.make(view, "Unfavorited !", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
 
-                    toggle = 1;
-                    return;
+                        toggle = 1;
+                        return;
+                    }
                 }
-            }
 
-            if(toggle == 0) {
-                String favId = dbFav.push().getKey();
-                favouritedResep thisResep = new favouritedResep(email, favId, resep.getId());
-                dbFav.child(favId).setValue(thisResep);
+                if(toggle == 0) {
+                    //insert the data
+                    String favId = dbFav.push().getKey();
+                    favouritedResep thisResep = new favouritedResep(email, favId, resep.getId());
+                    dbFav.child(favId).setValue(thisResep);
 
-                view.setBackgroundColor(Color.parseColor("#FFC0CB"));
+                    //coloring the button
+                    fav.setRippleColor(ContextCompat.getColor(getApplicationContext(), R.color.button_focused));
+                    fav.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(),R.color.button_pressed)));
 
-                Snackbar.make(view, "Favorited !", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                    Snackbar.make(view, "Favorited !", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+
                 toggle = 0;
             }
-
-
-            }
         });
-
 
 
         //Modifying the Description
@@ -131,11 +135,18 @@ public class fDescActivity extends AppCompatActivity {
                 favouriteList.clear();
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-
                     favouritedResep favR = postSnapshot.getValue(favouritedResep.class);
-
                     favouriteList.add(favR);
+                }
 
+
+                //coloring the button for the first time
+                for(int i=0; i<favouriteList.size(); i++) {
+
+                    if (favouriteList.get(i).getEmail().equals(email) && favouriteList.get(i).getResepId().equals(resep.getId())) {
+                        fav.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(),R.color.button_pressed)));
+                        return;
+                    }
                 }
 
             }

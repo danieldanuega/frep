@@ -1,5 +1,6 @@
 package com.example.android.frep;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -56,7 +57,6 @@ public class fLogin extends AppCompatActivity {
             public void onClick(View view) {
 
                 hideSoftKeyboard();
-
                 startActivity(new Intent(fLogin.this, fRegister.class));
 
             }
@@ -83,6 +83,7 @@ public class fLogin extends AppCompatActivity {
 
                     if (!task.isSuccessful()) {
                         Toast.makeText(fLogin.this, "Email atau Password anda salah", Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(ProgressBar.INVISIBLE);
                     } else {
                         FirebaseUser user = mAuth.getCurrentUser();
                         Toast.makeText(fLogin.this, "Selamat Datang " + user.getEmail(), Toast.LENGTH_LONG).show();
