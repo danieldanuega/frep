@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +43,7 @@ public class fDescActivity extends AppCompatActivity {
     List<favouritedResep> favouriteList = new ArrayList<>();
 
     DatabaseReference dbFav;
+    ImageView imgResep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +51,13 @@ public class fDescActivity extends AppCompatActivity {
         setContentView(R.layout.activity_f_desc);
         //Initiate
         dbFav = FirebaseDatabase.getInstance().getReference("favouritedResep");
-        fav = (FloatingActionButton) findViewById(R.id.favBtn);
+        fav = findViewById(R.id.favBtn);
+        imgResep = findViewById(R.id.imageResep);
 
         //get the object
         resep = (resepNusantara) getIntent().getSerializableExtra("RESEP");
 
-        //modifying app bar or bar in the top
+        //modifying app bar or toolbar in the top
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle(resep.getNama());
@@ -156,6 +160,8 @@ public class fDescActivity extends AppCompatActivity {
 
             }
         });
+
+        //PICASSO HERE
 
     }
 
