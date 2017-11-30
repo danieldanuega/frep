@@ -67,4 +67,19 @@
         android:text="User"
         app:layout_constraintEnd_toStartOf="@+id/signOutBtn"
         tools:layout_editor_absoluteY="16dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="95dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/resepList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/resepList"
+        app:layout_constraintTop_toTopOf="@+id/resepList" />
 </android.support.constraint.ConstraintLayout>

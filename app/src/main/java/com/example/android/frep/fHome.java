@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -40,6 +41,8 @@ public class fHome extends AppCompatActivity {
     private Button suggestBtn;
     private Button userBtn;
 
+    private ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class fHome extends AppCompatActivity {
         //Initiate
         listViewResep = (ListView) findViewById(R.id.resepList);
         dbResepNusantara = FirebaseDatabase.getInstance().getReference("resepNusantara");
+        progressBar = findViewById(R.id.progressBar);
 
         //To give action in Selected data in ListView
         listViewResep.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -102,13 +106,13 @@ public class fHome extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        progressBar.setVisibility(ProgressBar.VISIBLE);
         dbResepNusantara.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 //clear the list
                 listResepNusantara.clear();
-
 
                 //iterating all nodes
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
@@ -122,12 +126,12 @@ public class fHome extends AppCompatActivity {
 
                 }
 
-
                 //creating the adapter for the list
                 ResepList resepListAdapter = new ResepList(fHome.this, listResepNusantara);
                 //attaching adapter to the listView
                 listViewResep.setAdapter(resepListAdapter);
                 registerForContextMenu(listViewResep);
+                progressBar.setVisibility(ProgressBar.INVISIBLE);
             }
 
             @Override

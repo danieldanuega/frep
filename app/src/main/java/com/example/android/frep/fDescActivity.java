@@ -38,7 +38,6 @@ public class fDescActivity extends AppCompatActivity {
     private String email = user.getEmail().substring(0,index);
 
     resepNusantara resep;
-    favouritedResep favResep;
     //A vessel for favouritedResep database
     List<favouritedResep> favouriteList = new ArrayList<>();
 
