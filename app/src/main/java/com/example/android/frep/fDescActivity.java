@@ -51,7 +51,7 @@ public class fDescActivity extends AppCompatActivity {
         //Initiate
         dbFav = FirebaseDatabase.getInstance().getReference("favouritedResep");
         fav = findViewById(R.id.favBtn);
-        imgResep = findViewById(R.id.imageResep);
+        imgResep = findViewById(R.id.imgResep);
 
         //get the object
         resep = (resepNusantara) getIntent().getSerializableExtra("RESEP");
@@ -60,6 +60,8 @@ public class fDescActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle(resep.getNama());
+        //PICASSO HERE
+        Picasso.with(this).load(resep.getImgUrl()).into(imgResep);
 
         //Modifying the favourite button
         fav.setOnClickListener(new View.OnClickListener() {
@@ -159,9 +161,6 @@ public class fDescActivity extends AppCompatActivity {
 
             }
         });
-
-        //PICASSO HERE
-
     }
 
 
