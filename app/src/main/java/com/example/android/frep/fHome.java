@@ -19,6 +19,10 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -53,6 +57,16 @@ public class fHome extends AppCompatActivity {
         listViewResep = (ListView) findViewById(R.id.resepList);
         dbResepNusantara = FirebaseDatabase.getInstance().getReference("resepNusantara");
         progressBar = findViewById(R.id.progressBar);
+
+        
+        //Give Tutorial for the first time
+        Target highlight = new ViewTarget(R.id.resepList,this);
+        new ShowcaseView.Builder(this)
+                .setTarget(highlight)
+                .setContentTitle("Rating")
+                .setContentText("Tap dengan lama resep yang anda ingin lihat ratingnya, Kemudian tap rating yang anda ingingkan untuk menambahkan rating anda")
+                .setStyle(2)
+                .build();
 
         //To give action in Selected data in ListView
         listViewResep.setOnItemClickListener(new AdapterView.OnItemClickListener() {
