@@ -1,4 +1,4 @@
-package com.example.android.frep;
+package com.danielgo.android.frep;
 
 /**
  * Created by Daniel Go on 16 Nov 2017.

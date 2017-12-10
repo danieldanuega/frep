@@ -1,4 +1,4 @@
-package com.example.android.frep;
+package com.danielgo.android.frep;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class fSplashScreen extends AppCompatActivity {
 

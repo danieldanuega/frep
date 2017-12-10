@@ -1,6 +1,5 @@
-package com.example.android.frep;
+package com.danielgo.android.frep;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;

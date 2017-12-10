@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.frep">
+    package="com.danielgo.android.frep">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".fSplashScreen"
+            android:name="com.danielgo.android.frep.fSplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/SplashScreen">
             <intent-filter>
@@ -22,64 +22,64 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fHome"
-            android:parentActivityName=".fSplashScreen"
+            android:name="com.danielgo.android.frep.fHome"
+            android:parentActivityName="com.danielgo.android.frep.fSplashScreen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".fSplashScreen" />
+                android:value="com.danielgo.android.frep.fSplashScreen" />
         </activity>
         <activity
-            android:name=".fDescActivity"
-            android:parentActivityName=".fSplashScreen"
+            android:name="com.danielgo.android.frep.fDescActivity"
+            android:parentActivityName="com.danielgo.android.frep.fSplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".fSplashScreen" />
+                android:value="com.danielgo.android.frep.fSplashScreen" />
         </activity>
         <activity
-            android:name=".fRegister"
-            android:parentActivityName=".fSplashScreen"
+            android:name="com.danielgo.android.frep.fRegister"
+            android:parentActivityName="com.danielgo.android.frep.fSplashScreen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".fSplashScreen" />
+                android:value="com.danielgo.android.frep.fSplashScreen" />
         </activity>
         <activity
-            android:name=".fLogin"
-            android:parentActivityName=".fSplashScreen"
+            android:name="com.danielgo.android.frep.fLogin"
+            android:parentActivityName="com.danielgo.android.frep.fSplashScreen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".fSplashScreen" />
+                android:value="com.danielgo.android.frep.fSplashScreen" />
         </activity>
         <activity
-            android:name=".fSendResep"
-            android:parentActivityName=".fSplashScreen"
+            android:name="com.danielgo.android.frep.fSendResep"
+            android:parentActivityName="com.danielgo.android.frep.fSplashScreen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".fSplashScreen" />
+                android:value="com.danielgo.android.frep.fSplashScreen" />
         </activity>
         <activity
-            android:name=".fAccPage"
-            android:parentActivityName=".fSplashScreen"
+            android:name="com.danielgo.android.frep.fAccPage"
+            android:parentActivityName="com.danielgo.android.frep.fSplashScreen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".fSplashScreen" />
+                android:value="com.danielgo.android.frep.fSplashScreen" />
         </activity>
     </application>
 

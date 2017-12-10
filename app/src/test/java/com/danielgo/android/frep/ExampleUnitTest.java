@@ -1,4 +1,4 @@
-package com.example.android.frep;
+package com.danielgo.android.frep;
 
 import org.junit.Test;
 

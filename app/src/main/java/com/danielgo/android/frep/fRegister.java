@@ -1,4 +1,4 @@
-package com.example.android.frep;
+package com.danielgo.android.frep;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
