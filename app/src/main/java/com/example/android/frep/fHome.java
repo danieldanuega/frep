@@ -58,7 +58,7 @@ public class fHome extends AppCompatActivity {
         dbResepNusantara = FirebaseDatabase.getInstance().getReference("resepNusantara");
         progressBar = findViewById(R.id.progressBar);
 
-        
+
         //Give Tutorial for the first time
         Target highlight = new ViewTarget(R.id.resepList,this);
         new ShowcaseView.Builder(this)
@@ -128,9 +128,9 @@ public class fHome extends AppCompatActivity {
             String[] menuItems = getResources().getStringArray(R.array.rater);
             String[] newMenuItems = new String[menuItems.length];
 
-            newMenuItems[0] = menuItems[0] + " sebanyak " + selectedResep.getRating();
-            newMenuItems[1] = menuItems[1] + " sebanyak " + selectedResep.getRating2();
-            newMenuItems[2] = menuItems[2] + " sebanyak " + selectedResep.getRating3();
+            newMenuItems[0] = menuItems[0] + " sebanyak " + selectedResep.getRating() + "x";
+            newMenuItems[1] = menuItems[1] + " sebanyak " + selectedResep.getRating2() + "x";
+            newMenuItems[2] = menuItems[2] + " sebanyak " + selectedResep.getRating3() + "x";
 
             for (int i = 0; i<menuItems.length; i++) {
                 menu.add(Menu.NONE, i, i, newMenuItems[i]);
