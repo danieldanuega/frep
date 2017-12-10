@@ -102,6 +102,63 @@ public class fHome extends AppCompatActivity {
 
 
 
+    //To view specific rating
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        if(v.getId() == R.id.resepList) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+            resepNusantara selectedResep = listResepNusantara.get(info.position);
+            menu.setHeaderTitle("Rating");
+            String[] menuItems = getResources().getStringArray(R.array.rater);
+            String[] newMenuItems = new String[menuItems.length];
+
+            newMenuItems[0] = menuItems[0] + " sebanyak " + selectedResep.getRating();
+            newMenuItems[1] = menuItems[1] + " sebanyak " + selectedResep.getRating2();
+            newMenuItems[2] = menuItems[2] + " sebanyak " + selectedResep.getRating3();
+
+            for (int i = 0; i<menuItems.length; i++) {
+                menu.add(Menu.NONE, i, i, newMenuItems[i]);
+            }
+        }
+    }
+
+    //To give rating
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int index = info.position;
+        resepNusantara selectedResep = listResepNusantara.get(index);
+
+        Long total;
+
+        switch(item.getItemId()) {
+
+            case 0:
+                total = selectedResep.getRating() + 1L;
+                selectedResep.setRating(total);
+                dbResepNusantara.child(selectedResep.getId()).child("rating").setValue(total);
+                break;
+
+            case 1:
+                total = selectedResep.getRating2() + 1L;
+                selectedResep.setRating2(total);
+                dbResepNusantara.child(selectedResep.getId()).child("rating2").setValue(total);
+                break;
+
+            case 2:
+                total = selectedResep.getRating3() + 1L;
+                selectedResep.setRating3(total);
+                dbResepNusantara.child(selectedResep.getId()).child("rating3").setValue(total);
+                break;
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
+
+
     @Override
     protected void onStart() {
         super.onStart();
