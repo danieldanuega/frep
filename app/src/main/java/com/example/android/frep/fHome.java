@@ -128,9 +128,9 @@ public class fHome extends AppCompatActivity {
             String[] menuItems = getResources().getStringArray(R.array.rater);
             String[] newMenuItems = new String[menuItems.length];
 
-            newMenuItems[0] = menuItems[0] + " dirate " + selectedResep.getRating() + "x";
-            newMenuItems[1] = menuItems[1] + " dirate " + selectedResep.getRating2() + "x";
-            newMenuItems[2] = menuItems[2] + " dirate " + selectedResep.getRating3() + "x";
+            newMenuItems[0] = menuItems[0] + " sudah dirate " + selectedResep.getRating() + "x";
+            newMenuItems[1] = menuItems[1] + " sudah dirate " + selectedResep.getRating2() + "x";
+            newMenuItems[2] = menuItems[2] + " sudah dirate " + selectedResep.getRating3() + "x";
 
             for (int i = 0; i<menuItems.length; i++) {
                 menu.add(Menu.NONE, i, i, newMenuItems[i]);
